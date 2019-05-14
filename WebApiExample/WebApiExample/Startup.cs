@@ -35,7 +35,8 @@ namespace WebApiExample
                     builder =>
                     {
 
-                        builder.WithOrigins("http://localhost:52047").AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("http://localhost:52047",
+                                            "http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
                     });
 
             });

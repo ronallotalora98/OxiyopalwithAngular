@@ -9,8 +9,9 @@ import { Cliente } from '../../Models/Cliente';
 export class ClienteService {
 
     formdata: Cliente;
-    readonly apiURL = 'https://localhost:44373/api'; 
+    //readonly apiURL = 'https://localhost:44373/api'; 
     //readonly apiURL = 'http://localhost:52042/api';
+    readonly apiURL = 'https://localhost:5001/api';     
     list: Cliente[];
     
     
@@ -29,7 +30,13 @@ export class ClienteService {
         return this.http.get(this.apiURL + '/cliente');
        
     }
+    getCliente(clienteId: string) {
+        return this.http.get<Cliente>(this.apiURL + '/cliente/' + clienteId);
+    }
     createCliente(formdata: Cliente) {
         return this.http.post(this.apiURL + '/cliente', formdata);
+    }
+    updateCliente(formdata: Cliente) {
+        return this.http.put(this.apiURL + '/cliente/' + formdata.Id, formdata);
     }
 }

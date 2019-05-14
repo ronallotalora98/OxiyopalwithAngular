@@ -13,8 +13,8 @@ import { error } from 'protractor';
 export class ListClienteComponent implements OnInit {
 
     Clientes: any;
-    clien : Cliente[] = [];
-
+    //clien : Cliente[] = [];
+    
     TextoBoton: string = "Actualizar";
     constructor(private clienteService: ClienteService,
         private httpClient: HttpClient) { }

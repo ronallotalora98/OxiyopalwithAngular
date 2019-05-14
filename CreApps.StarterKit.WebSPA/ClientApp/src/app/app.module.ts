@@ -27,7 +27,8 @@ const routes: Routes =
                 { path: 'home', component: HomeComponent },
                 { path: 'ticket', component: TicketComponent, pathMatch: 'full' },
                 { path: 'cliente', component: ListClienteComponent, pathMatch: 'full' },
-                { path: 'cliente-agregar', component: ClienteFormComponent }
+                { path: 'cliente-agregar', component: ClienteFormComponent },
+                { path: 'cliente-editar/:id', component: ClienteFormComponent }
             ]
         },
         //Todas las páginas que no requieran un layout van aquí

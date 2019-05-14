@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CreApps.StarterKit.Models;
 using Microsoft.AspNetCore.Cors;
+using System.Net;
 
 namespace WebApiExample.Controllers
 {
@@ -29,13 +30,49 @@ namespace WebApiExample.Controllers
             return Ok(AllClientes);
         }
 
+        // GET api/cliente/5
+        //[HttpGet("{id}")]
+        //public ActionResult<string> Get(int id)
+        //{
+        //    return  id.ToString();
+        //}
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var onCliente = await _clienteService.GetById(id);
+            return Ok(onCliente);
+        }
+
         // POST: api/create
         [HttpPost]
         public async Task<IActionResult> Create(Cliente cliente)
         {
 
             await _clienteService.Create(cliente);
-            return CreatedAtRoute("DefaultApi", new { id = cliente.Id }, cliente);
+            return Ok();
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(Cliente), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Update(int id, Cliente cliente)
+        {
+            if(id != cliente.Id)
+            {
+                return BadRequest();
+            }
+            await _clienteService.Update(cliente);
+            return Ok();
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _clienteService.Delete(id);
+            return Ok();
         }
     }
 }
